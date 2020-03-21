@@ -44,7 +44,7 @@ export default {
     '@nuxtjs/pwa',
     ['nuxt-vuex-localstorage', {
       mode: 'debug',
-      localStorage: ['login']
+      localStorage: ['auth']
     }]
   ],
   

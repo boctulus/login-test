@@ -1,3 +1,5 @@
+import router from 'vue-router'
+
 export const state = () => ({
     authUser: {
         id: null,
@@ -13,36 +15,36 @@ export const state = () => ({
 });
 
 export const mutations = {
-    setUser(state, payload) {
+    SET_USER(state, payload) {
         state.authUser = val;
 
         for (let [key, value] of Object.entries(payload)) {
             state.authUser[key] = value;
         }
     },
-    setId(state, val) {
+    SET_ID(state, val) {
         state.authUser.id = val;
     },
-    setName(state, val) {
+    SET_NAME(state, val) {
         state.authUser.name = val;
     },
-    setUsername(state, val) {
+    SET_USERNAME(state, val) {
         state.authUser.username = val;
     },
-    setRoles(state, val) {
+    SET_ROLES(state, val) {
         state.authUser.roles = val;
     },
-    setAccessToken(state, val) {
+    SET_ACCESS_TOKEN(state, val) {
         state.authUser.accessToken = val;
     },
     setRefreshToken(state, val) {
         state.authUser.refreshToken = val;
     },
-    setExpirationTime(state, expires_in) {
+    SET_EXPIRATION_TIME(state, expires_in) {
         state.authUser.expires_in = expires_in;
         state.authUser.exp = parseInt((new Date).getTime() / 1000) + expires_in;
     },
-    logout(state) {
+    LOGOUT(state) {
         state.authUser = {
             id: null,
             name: null,
@@ -56,16 +58,16 @@ export const mutations = {
 
         state.alert = null;
     },
-    setAlert(state, msg){
+    SET_ALERT(state, msg){
         state.alert = msg;
     }
 }
 
 export const getters = {
-    getUser(state) {
+    GET_USER(state) {
         return state.authUser;
     },
-    isLogged(state) {
+    IS_LOGGED(state) {
         return state.authUser.id !== null;
     }
 }

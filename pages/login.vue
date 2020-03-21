@@ -32,8 +32,8 @@ export default {
             afterLogin: '/tres',
             error: null,
             user: {
-                username: 'boctulu', // null
-                password: 'gogogo'  // null
+                username: 'boctulus', // null
+                password: 'gogogo2k'  // null
             }
         }
     },
@@ -41,7 +41,7 @@ export default {
     created () {
       /*
       setInterval(() => {
-        console.log(this.$store.getters['login/getUser'].accessToken);
+        console.log(this.$store.getters['auth/GET_USER'].accessToken);
       }, 5000)
       */
     },
@@ -58,11 +58,11 @@ export default {
             }).then( response => {
                 //console.log(response);
 
-                this.$store.commit('login/setAccessToken', response.data.data.access_token);
-                this.$store.commit('login/setRefreshToken', response.data.data.refresh_token);
-                this.$store.commit('login/setExpirationTime', response.data.data.expires_in);
-                this.$store.commit('login/setId', response.data.data.uid);
-                this.$store.commit('login/setRoles', response.data.data.roles);
+                this.$store.commit('auth/SET_ACCESS_TOKEN', response.data.data.access_token);
+                this.$store.commit('auth/setRefreshToken', response.data.data.refresh_token);
+                this.$store.commit('auth/SET_EXPIRATION_TIME', response.data.data.expires_in);
+                this.$store.commit('auth/SET_ID', response.data.data.uid);
+                this.$store.commit('auth/SET_ROLES', response.data.data.roles);
 
                 this.$axios.request({
                     url: 'http://elgrove.co/api/v1/me',
@@ -71,8 +71,8 @@ export default {
                         'Authorization': `Bearer ${response.data.data.access_token}`
                     }
                 }).then( response => {
-                    this.$store.commit('login/setName', response.data.data.name);
-                    this.$store.commit('login/setUsername', response.data.data.username);
+                    this.$store.commit('auth/SET_NAME', response.data.data.name);
+                    this.$store.commit('auth/SET_USERNAME', response.data.data.username);
 
                 }).catch((error) => {
                     const response = error.response;
@@ -81,7 +81,7 @@ export default {
                     this.error = response.data.error;
                 });
                 
-                //console.log(this.$store.getters['login/getUser']);
+                //console.log(this.$store.getters['auth/GET_USER']);
                 //console.log(process.server);
 
                 // redirect

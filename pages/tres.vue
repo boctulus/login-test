@@ -32,13 +32,13 @@ export default {
     },
 
     created() {
-        //console.log(`Bearer ${this.$store.getters['login/getUser'].accessToken}`);
+        //console.log(`Bearer ${this.$store.getters['auth/GET_USER'].accessToken}`);
 
         this.$axios.request({
             url: 'http://elgrove.co/api/v1/messages',
             method: 'get',
             headers: {
-                'Authorization': `Bearer ${this.$store.getters['login/getUser'].accessToken}`
+                'Authorization': `Bearer ${this.$store.getters['auth/GET_USER'].accessToken}`
             }
         }).then( ({ data }) => {
                 //console.log(data);  
@@ -52,7 +52,7 @@ export default {
     methods: {
         logout(){
             //console.log('LOG OUT!');
-            this.$store.commit('login/logout');
+            this.$store.commit('auth/LOGOUT');
             this.$router.push('/');
         }
     }

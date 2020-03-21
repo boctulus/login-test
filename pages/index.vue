@@ -25,21 +25,21 @@
 export default {
   computed: {
     loginAlert() {
-      return this.$store.state.login.alert;
+      return this.$store.state.auth.alert;
     }
   },
 
   watch: {
     loginAlert(msg){
       if (msg !== null) {
-        this.$store.commit('login/setAlert', null);
+        this.$store.commit('auth/SET_ALERT', null);
         alert(msg);
       }
     }
   },
 
   mounted() {
-    //console.log(this.isLogged);
+    
   },
   
   components: {
