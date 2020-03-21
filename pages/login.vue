@@ -47,53 +47,11 @@ export default {
     },
 
     methods: {
-        onSubmit() {
-            //console.log('SUBMITTED!');
-            //console.log(this.user);            
-            
-            this.$axios.post('http://elgrove.co/auth/login', {
-                    username: this.user.username,
-                    password: this.user.password
-
-            }).then( response => {
-                //console.log(response);
-
-                this.$store.commit('auth/SET_ACCESS_TOKEN', response.data.data.access_token);
-                this.$store.commit('auth/setRefreshToken', response.data.data.refresh_token);
-                this.$store.commit('auth/SET_EXPIRATION_TIME', response.data.data.expires_in);
-                this.$store.commit('auth/SET_ID', response.data.data.uid);
-                this.$store.commit('auth/SET_ROLES', response.data.data.roles);
-
-                this.$axios.request({
-                    url: 'http://elgrove.co/api/v1/me',
-                    method: 'get',
-                    headers: {
-                        'Authorization': `Bearer ${response.data.data.access_token}`
-                    }
-                }).then( response => {
-                    this.$store.commit('auth/SET_NAME', response.data.data.name);
-                    this.$store.commit('auth/SET_USERNAME', response.data.data.username);
-
-                }).catch((error) => {
-                    const response = error.response;
-                    //console.log('Error', error);
-                    //console.log(response.data.error);
-                    this.error = response.data.error;
-                });
-                
-                //console.log(this.$store.getters['auth/GET_USER']);
-                //console.log(process.server);
-
-                // redirect
-                this.$router.push(this.afterLogin);
-
-            }).catch((error) => {
-                const response = error.response;
-                //console.log('Error', error);
-                //console.log(response.data.error);
-                this.error = response.data.error;
-            });
-        }
+      onSubmit() {
+          //console.log('SUBMITTED!');
+          //console.log(this.user);  
+          this.$store.commit('auth/LOGIN', this.user);
+      }
     }
 }
 </script>

@@ -53,7 +53,6 @@ export default {
         logout(){
             //console.log('LOG OUT!');
             this.$store.commit('auth/LOGOUT');
-            this.$router.push('/');
         }
     }
 }
