@@ -32,7 +32,7 @@ export default {
             afterLogin: '/tres',
             error: null,
             user: {
-                username: 'los_pitufos', // null
+                username: 'boctulu', // null
                 password: 'gogogo'  // null
             }
         }
